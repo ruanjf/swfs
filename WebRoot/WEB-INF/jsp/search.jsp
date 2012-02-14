@@ -3,7 +3,7 @@
 <form id="sform" name="sform" action="s" method="post">
 	<div>
 		<span class="s_ipt_wr"><input type="text" name="key" id="key"
-				maxlength="100" class="s_ipt" alt="请输入公司名称或者公司地址">
+				maxlength="100" class="s_ipt" alt="请输入公司名称或者公司地址" onkeypress= "javascript:if(event.keyCode==13){$('#search').click();return false;}">
 		</span>
 		<span class="s_btn_wr"><input type="button" value="查询"
 				id="search" class="s_btn"
@@ -12,7 +12,7 @@
 		</span>
 	</div>
 </form>
-<div id="dialog-modal" title="Basic modal dialog">
+<div id="dialog-modal" title="Basic modal dialog" style="font-size: 1.5em;">
 	<p></p>
 </div>
 <script type="text/javascript">

@@ -37,15 +37,15 @@
 			   	url:'u/ulist',
 				datatype: "json",
 				height: 345,
-                width:260,
+                width:300,
 			   	colNames:['编号','员工名称', '时间'],
 			   	colModel:[
 			   		{name:'userId',index:'userId', width:55, sorttype:"int"},
-			   		{name:'username',index:'username',formatter:addulink, width:120, sorttype:"string"},
+			   		{name:'username',index:'username',formatter:addulink, width:160, sorttype:"string"},
 					{name:'createTime',index:'createTime',formatter:fromatdate, width:87, sorttype:"date"}		
 			   	],
 			   	rowNum:20,
-			   	rowList:[20,40,60],
+			   	//rowList:[20,40,60],
 			   	pager: '#upager',
 			   	sortname: 'userId',
 			    viewrecords: true,
@@ -53,7 +53,7 @@
 			    sortorder: "userId",
 			    jsonReader:{
 			    	root:"result",  
-			        page: "currpage",  
+			        page: "currentPage",  
 			        total: "pageCount",  
 			        records: "totalCount",  
 			        repeatitems: false,  
@@ -65,21 +65,21 @@
 				    order: "userId" // 表示采用的排序方式的参数名称  
 				}
 			});
-			$("#ulist").jqGrid('navGrid','#cpager',{edit:false,add:false,del:false});
+			$("#ulist").jqGrid('navGrid','#cpager',{edit:false,add:false,del:false,search:false,refresh:false});
 			
 			$("#clist").jqGrid({
 			   	url:'u/clist',
 				datatype: "json",
 				height: 345,
-                width:260,
+                width:300,
 			   	colNames:['编号','客户名称', '时间'],
 			   	colModel:[
 			   		{name:'companyId',index:'companyId', width:55, sorttype:"int"},
-			   		{name:'name',index:'name',formatter:addclink, width:120, sorttype:"string"},
+			   		{name:'name',index:'name',formatter:addclink, width:160, sorttype:"string"},
 					{name:'createTime',index:'createTime',formatter:fromatdate, width:87, sorttype:"date"}		
 			   	],
 			   	rowNum:20,
-			   	rowList:[20,40,60],
+			   	//rowList:[20,40,60],
 			   	pager: '#cpager',
 			   	sortname: 'userId',
 			    viewrecords: true,
@@ -87,7 +87,7 @@
 			    sortorder: "companyId",
 			    jsonReader:{
 			    	root:"result",  
-			        page: "currpage",  
+			        page: "currentPage",  
 			        total: "pageCount",  
 			        records: "totalCount",  
 			        repeatitems: false,  
@@ -99,7 +99,7 @@
 				    order: "companyId" // 表示采用的排序方式的参数名称  
 				}
 			});
-			$("#clist").jqGrid('navGrid','#cpager',{edit:false,add:false,del:false});
+			$("#clist").jqGrid('navGrid','#cpager',{edit:false,add:false,del:false,search:false,refresh:false});
 			
 			// $("#m1").click( function() {
 			// 	var s;
@@ -186,6 +186,9 @@
 			<c:if test="${type == 'company'}">
 				<%@ include file="company.jsp" %>
 			</c:if>
+			<div id="companyInfo" style="display: none;">
+				<p></p>
+			</div>
 			<p id="cp" style="clear: both;padding: 10px 0;">
 				<%=Constants.getInstance().getAppInfo().getCopyright() %>
 			</p>

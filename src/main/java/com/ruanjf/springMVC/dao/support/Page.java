@@ -48,10 +48,13 @@ public class Page<T> implements Serializable {
 	 * @param data	  本页包含的数据
 	 */
 	public Page(long start, long totalSize, long pageSize, List<T> data) {
+		if(pageSize<=0)
+			pageSize=DEFAULT_PAGE_SIZE;
 		this.pageSize = pageSize;
 		this.start = start;
 		this.totalCount = totalSize;
 		this.data = data;
+		this.pageCount = this.getPageCount();
 	}
 
 	/**
@@ -64,7 +67,7 @@ public class Page<T> implements Serializable {
 	/**
 	 * 取总页数.
 	 */
-	public long getTotalPageCount() {
+	public long getPageCount() {
 		if (totalCount % pageSize == 0)
 			return totalCount / pageSize;
 		else
@@ -96,7 +99,7 @@ public class Page<T> implements Serializable {
 	/**
 	 * 取该页当前页码,页码从1开始.
 	 */
-	public long getCurrentPageNo() {
+	public long getCurrentPage() {
 		return start / pageSize + 1;
 	}
 
@@ -104,14 +107,14 @@ public class Page<T> implements Serializable {
 	 * 该页是否有下一页.
 	 */
 	public boolean hasNextPage() {
-		return this.getCurrentPageNo() < this.getTotalPageCount() - 1;
+		return this.getCurrentPage() < this.getPageCount() - 1;
 	}
 
 	/**
 	 * 该页是否有上一页.
 	 */
 	public boolean hasPreviousPage() {
-		return this.getCurrentPageNo() > 1;
+		return this.getCurrentPage() > 1;
 	}
 
 	/**
@@ -162,12 +165,4 @@ public class Page<T> implements Serializable {
 		
 	}
 
-	public long getPageCount() {
-		return pageCount;
-	}
-
-	public void setPageCount(long pageCount) {
-		this.pageCount = pageCount;
-	}
-	
 }

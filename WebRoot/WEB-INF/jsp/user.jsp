@@ -39,19 +39,20 @@
 <c:if test="${user.userId != null}">
 <script type="text/javascript">
 $(document).ready(function() {
+	//$.jgrid.defaults={recordtext: "共{2}条",pginput:false};
 	$("#uclist").jqGrid({
 	   	url:'u/clist?userId=${user.userId}',
 		datatype: "json",
 		height: 285,
-	    width:260,
+	    width:300,
 	   	colNames:['编号','客户列表', '时间'],
 	   	colModel:[
 	   		{name:'companyId',index:'companyId', width:55, sorttype:"int"},
-	   		{name:'name',index:'name', width:120, sorttype:"string"},
+	   		{name:'name',index:'name',formatter:adduclink, width:160, sorttype:"string"},
 			{name:'createTime',index:'createTime',formatter:fromatdate, width:87, sorttype:"date"}		
 	   	],
-	   	rowNum:20,
-	   	rowList:[20,40,60],
+	   	//rowNum:20,
+	   	//rowList:[20,40,60],
 	   	pager: '#ucpager',
 	   	sortname: 'userId',
 	    viewrecords: true,
@@ -59,11 +60,11 @@ $(document).ready(function() {
 	    caption:"“${user.username}”的客户列表",
 	    jsonReader:{
 	    	root:"result",  
-	        page: "currpage",  
+	        page: "currentPage",  
 	        total: "pageCount",  
 	        records: "totalCount",  
 	        repeatitems: false,  
-	        id: "0"  
+	        id: "companyId"  
 	    },
 	    prmNames : {  
 		    page:"currPage",    // 表示请求页码的参数名称  
@@ -71,7 +72,8 @@ $(document).ready(function() {
 		    order: "companyId" // 表示采用的排序方式的参数名称  
 		}
 	});
-	$("#uclist").jqGrid('navGrid','#cpager',{edit:false,add:false,del:false});
+	$("#uclist").jqGrid('navGrid','#cpager',{edit:false,add:false,del:false,search:false,refresh:false});
+	//$("#ucpager_center").html("");
 });
 </script>
 </c:if>

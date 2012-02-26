@@ -92,6 +92,7 @@ public class Company{
 	 */
 	@Column(length=200)
 	private Long principal;
+	private String principalName;
 	
 	/**
 	 * 备注
@@ -217,6 +218,14 @@ public class Company{
 
 	public void setCompanyId(Long companyId) {
 		this.companyId = companyId;
+	}
+
+	public String getPrincipalName() {
+		return principalName;
+	}
+
+	public void setPrincipalName(String principalName) {
+		this.principalName = principalName;
 	}
 	
 }

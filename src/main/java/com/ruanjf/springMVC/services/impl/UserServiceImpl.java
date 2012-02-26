@@ -60,7 +60,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void saveUser(User user) {
-		// TODO Auto-generated method stub
+		if(user==null)
+			return;
+		if(user.getUserId()==null)
+			user.setUserId(getNextId());
 		userDao.save(user);
 	}
 

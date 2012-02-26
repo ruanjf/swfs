@@ -31,15 +31,15 @@
 			   	url:'u/clist',
 				datatype: "json",
 				height: 345,
-                width:260,
+                width:300,
 			   	colNames:['编号','客户列表', '时间'],
 			   	colModel:[
 			   		{name:'companyId',index:'companyId', width:55, sorttype:"int"},
-			   		{name:'name',index:'name', width:120, sorttype:"string"},
+			   		{name:'name',index:'name',formatter:adduclink, width:160, sorttype:"string"},
 					{name:'createTime',index:'createTime',formatter:fromatdate, width:87, sorttype:"date"}		
 			   	],
 			   	rowNum:20,
-			   	rowList:[20,40,60],
+			   	//rowList:[20,40,60],
 			   	pager: '#cpager',
 			   	sortname: 'userId',
 			    viewrecords: true,
@@ -53,13 +53,13 @@
 			        repeatitems: false,  
 			        id: "0"  
 			    },
-			    prmNames : {  
+			    prmNames : {
 				    page:"currPage",    // 表示请求页码的参数名称  
 				    sort: "companyId", // 表示用于排序的列名的参数名称  
 				    order: "companyId" // 表示采用的排序方式的参数名称  
 				}
 			});
-			$("#clist").jqGrid('navGrid','#cpager',{edit:false,add:false,del:false});
+			$("#clist").jqGrid('navGrid','#cpager',{edit:false,add:false,del:false,search:false,refresh:false});
         });
 		</script>
 	</head>
@@ -86,6 +86,9 @@
 				<%@ include file="search.jsp" %>
 			</div>
 			<p id="lm"></p>
+						<div id="companyInfo" style="display: none;">
+				<p></p>
+			</div>
 			<p id="cp" style="padding: 10px 0;">
 				<%=Constants.getInstance().getAppInfo().getCopyright() %>
 			</p>

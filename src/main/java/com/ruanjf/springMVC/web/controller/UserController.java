@@ -46,7 +46,6 @@ public class UserController extends BaseController {
 	
 	@RequestMapping("{userId}")
 	public String user(@PathVariable String userId, Model model, HttpServletRequest request){
-		
 		User user = Utils.getLoginUser(request);
 		if(user!=null){
 			if("admin".equals(user.getRoles())){

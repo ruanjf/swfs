@@ -117,7 +117,7 @@ a:active {
 }
 
 #m {
-	width: 680px;
+	width: 720px;
 	margin: 0 auto;
 }
 
@@ -304,7 +304,8 @@ input {
 }
 #companyList {
 	float: left;
-	padding-top: 10px;
+	margin: 10px 5 0 10px;
+	width: 300;
 }
 .red {
 	color: #D14836;

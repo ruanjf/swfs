@@ -63,6 +63,10 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public void saveCompany(Company company) {
+		if(company==null)
+			return;
+		if(company.getCompanyId()==null)
+			company.setCompanyId(getNextId());
 		companyDao.save(company);
 	}
 

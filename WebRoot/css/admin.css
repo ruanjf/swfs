@@ -120,7 +120,7 @@ a:active {
 }
 
 #m {
-	width: 680px;
+	width: 720px;
 	margin: 0 auto;
 }
 
@@ -308,7 +308,7 @@ input { /* border: 0; */
 #tabs {
 	float: left;
 	margin: 10px 5 0 10px;
-	width: 260;
+	width: 300;
 }
 
 #tabs-c {

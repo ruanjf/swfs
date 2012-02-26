@@ -32,8 +32,37 @@ function fromatdate(cellvalue, options, rowObject) {
 	return format;
 }
 function addulink(cellvalue, opts, rowObject) {
-	return "<a href=u/" + opts.rowId + " target=_self>" + cellvalue + "</a>";
+	return "<a href=u/" + opts.rowId + " title='"+cellvalue+"' target=_self>" + cellvalue + "</a>";
 }
 function addclink(cellvalue, opts, rowObject) {
-	return "<a href=u/c/" + opts.rowId + " target=_self>" + cellvalue + "</a>";
+	return "<a href=u/c/" + opts.rowId + " title='"+cellvalue+"' target=_self>" + cellvalue + "</a>";
+}
+function adduclink(cellvalue, opts, rowObject){
+	return "<span onclick=\"companyInfo('"+opts.rowId+"');\" title='"+cellvalue+"'>"+cellvalue+"</span>";
+}
+function companyInfo(companyId){
+	$.ajax({
+		  url: 'c/'+companyId,
+		  success: function(company){
+			//var json = eval("("+data+")"); //转换为json对象
+		    var c = "<table><tr><td>公司名称： </td><td>"+company.name+"</td></tr>" +
+				"<tr><td>搜索关键字： </td><td>"+company.searchAddress+"</td></tr>" +
+				"<tr><td>公司地址： </td><td>"+company.address+"</td></tr>" +
+				"<tr><td>公司联系人： </td><td>"+company.contactPerson+"</td></tr>" +
+				"<tr><td>联系人手机： </td><td>"+company.contactPhone+"</td></tr>" +
+				"<tr><td>联系人座机： </td><td>"+company.contactTelephone+"</td></tr>" +
+				"<tr><td>己方负责人： </td><td>"+company.principalName+"</td></tr>" +
+				"<tr><td>备注： </td><td>"+company.desc+"</td></tr></table>";
+			$("#companyInfo p").html(c);
+			$("#companyInfo").dialog({
+				title : "客户信息",
+				minWidth : 400,
+				buttons : {
+					"关闭" : function() {
+						$(this).dialog("close");
+					}
+				}
+			});
+		  }
+	});
 }
